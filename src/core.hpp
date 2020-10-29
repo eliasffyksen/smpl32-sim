@@ -2,6 +2,8 @@
 #ifndef CORE_H
 #define CORE_H
 
+#include <functional>
+
 #include "ram.hpp"
 
 #define PC 31
@@ -52,9 +54,11 @@ namespace simp32 {
         Ram& ram;
         unsigned int registers[32];
         bool flags[4];
+        std::function<void(Core&)> syscallHandler = NULL;
         void execType12(Condition cond, Opcode opcode, unsigned char rd, unsigned int opperandA, unsigned int opperandB);
     public:
         Core(Ram& ram) : ram(ram) { registers[PC] = 0; }
+        Core(Ram& ram, std::function<void(Core&)> syscallHandler) : ram(ram), syscallHandler(syscallHandler) { registers[PC] = 0; }
         void tick();
         unsigned int getReg(unsigned char i);
         void setReg(unsigned char i, unsigned int val);

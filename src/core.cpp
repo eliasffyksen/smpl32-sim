@@ -10,7 +10,11 @@ void Core::tick() {
     registers[PC] += 4;
 
     if (IR == 0) {
-        cout << "syscall" << endl;
+        if (syscallHandler) {
+            syscallHandler(*this);
+        } else {
+            cout << "Got syscall, but no handler has been specified" << endl;
+        }
     } else if (IR >> 23 == 1 || IR >> 29 == 1) {
         Opcode opcode = static_cast<Opcode>((IR >> 3) & 0x1F);
         int rd = (IR >> 8) & 0x1F;
