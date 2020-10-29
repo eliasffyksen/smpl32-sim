@@ -13,6 +13,9 @@ namespace simp32 {
         unsigned char& operator[](unsigned int i);
 
         unsigned int getWord(unsigned int i);
+        void setWord(unsigned int i, unsigned int data);
+        unsigned int getHalf(unsigned int i);
+        void setHalf(unsigned int i, unsigned int data);
     };
 }
 
