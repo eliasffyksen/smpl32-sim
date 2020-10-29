@@ -10,6 +10,12 @@
 #define CARRY 2
 #define OVERFLOW 3
 
+#define MSB(x) ((x >> 31) & 1)
+#define LSB(x) (x & 1)
+#define POS(x) (!MSB(x))
+#define NEG(x) MSB(x)
+#define INV(x) ((~x) + 1)
+
 namespace simp32 {
 
     enum Condition {
@@ -28,30 +34,30 @@ namespace simp32 {
         adc,
         sub,
         sbc,
-        and,
-        or,
-        xor,
+        and_,
+        or_,
+        xor_,
         sll,
         srl,
         sra,
-        ldw = 26,
+        ld = 26,
         ldh,
         ldb,
-        stw,
+        st,
         sth,
         stb
-    }
+    };
 
     class Core {
         Ram& ram;
-        long registers[32];
+        unsigned int registers[32];
         bool flags[4];
-        void execType12(Condition cond, Opcode opcode, int rd, unsigned int opperandA, unsigned int opperandB);
+        void execType12(Condition cond, Opcode opcode, unsigned char rd, unsigned int opperandA, unsigned int opperandB);
     public:
         Core(Ram& ram) : ram(ram) { registers[PC] = 0; }
         void tick();
-        int getReg(unsigned char i);
-        void setReg(unsigned char i, int val);
+        unsigned int getReg(unsigned char i);
+        void setReg(unsigned char i, unsigned int val);
     };
 }
 
