@@ -2,7 +2,7 @@
 A simulator for the smpl32 architecture written in c++.
 
 # About smpl32 ISA
-smpl32 is a simple 32 bit risc ISA created by me (Elias F. Fyksen), with insperation from early arm ISA and RISC-V ISA. The final goal of the ISA is to implement a *as simple* as possible ISA, which is practicly capable of hosting a unix-like/posix opperating system.
+smpl32 is a simple 32 bit risc ISA created by me (Elias F. Fyksen), with insperation from early arm ISA and RISC-V ISA. The final goal of the ISA is to implement an *as simple* as possible ISA, which is practicly capable of hosting a unix-like/posix opperating system.
 
 Currently, the architecture only supports a single machine mode, without a virtual memory model, but this is something I hope to change in the near future.
 
